@@ -31,6 +31,15 @@ print(dfCom.head(10))
 print(dfCom.columns)
 print("taille du data frame :", dfCom.shape)
 
+# Harmoniser les noms des communes dans dfEve
+dfEve['commune'] = dfEve['commune'].replace(
+    to_replace=r"Marseille .* Arrondissement",
+    value="Marseille",
+    regex=True
+)
+
+# Vérif rapide
+print(dfEve['commune'].unique())
 
 
 #Visualisation du nombre d'événements par commune
