@@ -10,10 +10,11 @@ data=[]
 
 #Récupération des données API
 
-urlEvents=f"https://data.ampmetropole.fr/api/explore/v2.1/catalog/datasets/point-dinteret-datatourisme-multi-niveaux/records?limit=50&refine=niv1_categorie%3A%22F%C3%AAte%20et%20manifestation%22"
+urlEvents=f"https://data.ampmetropole.fr/api/explore/v2.1/catalog/datasets/point-dinteret-datatourisme-multi-niveaux/records?limit=97&refine=niv1_categorie%3A%22F%C3%AAte%20et%20manifestation%22"
 responseEvent= requests.get(urlEvents)
 jsonDataEvent=responseEvent.json()
-resultsEvent=jsonDataEvent['results']
+
+resultsEvent=jsonDataEvent["results"]
 
 urlCom=f"https://geo.api.gouv.fr/communes"
 responseCom= requests.get(urlCom)
