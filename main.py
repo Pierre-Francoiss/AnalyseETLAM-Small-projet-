@@ -46,3 +46,19 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 """
+
+#Identfication de la densité d'événements relativement à la population des communes
+merged_df = pd.merge(dfEve, dfCom, left_on='commune', right_on='nom', how='left')
+merged_df['density'] = merged_df['commune'].map(merged_df['commune'].value_counts()) / merged_df['population']
+print(merged_df[['commune', 'population', 'density']].drop_duplicates())
+print(merged_df[['commune', 'population', 'density']].drop_duplicates().sort_values(by='density', ascending=False))
+#Visualisation de la densité d'événements par commune rangé par densité
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x='commune', y='density', data=merged_df.drop_duplicates(subset=['commune']), palette='magma', order=merged_df.drop_duplicates(subset=['commune']).sort_values(by='density', ascending=False)['commune'])
+plt.title('Densité d\'événements par commune')
+plt.xlabel('Commune')
+plt.ylabel('Densité d\'événements (événements par habitant)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
